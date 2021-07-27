@@ -3,7 +3,7 @@ import numpy as np
 import copy
 import glob
 import time
-import Dc_spatial_support
+import create_L3
 import read_data
 
 ########################################################################################################################
@@ -25,7 +25,7 @@ lon=180
 factor = 1 #  fraction of observed Nd (droplet concentration); range: 0-1
 CF_threshold = 0.1 # Exclude scenes with CF<CF_threshold
 
-#output_all = Dc_spatial_support.creat_output_dict()
+#output_all = create_L3.creat_output_dict()
 
 output_array = {}
 output_array['delta_Dc'] = np.array([])
@@ -53,11 +53,11 @@ for count, f_name_modis in enumerate(file_list):
     print(f_name_modis)
     modis_data_all = read_data.read_modis(f_name_modis, modis_vars) # read modis data
     modis_data = copy.copy(read_data.shorten_modis_swath_data(modis_data_all, 500, 500)) # Chossing data +- 500 km along ground track to avoid lower resolution and associated biases
-    output_array = Dc_spatial_support.grid_data(modis_data, f_name_modis, ERA5_dir, output_array, factor)
+    output_array = create_L3.grid_data(modis_data, f_name_modis, ERA5_dir, output_array, factor)
     print(count)
-    #output = Dc_spatial_support.creat_output_dict()
+    #output = create_L3.creat_output_dict()
     #run_indx = run_indx+1
 
 # Time counter - end
-elapsed = time.time() - t
-print(elapsed/60)
+#elapsed = time.time() - t
+#print(elapsed/60)
