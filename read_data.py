@@ -3,6 +3,8 @@
 import numpy as np
 import netCDF4 as nc4
 import h5py
+import xarray
+import pandas
 import hdf
 import os
 from csat import MODIS
